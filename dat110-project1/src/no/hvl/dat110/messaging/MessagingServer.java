@@ -13,11 +13,9 @@ public class MessagingServer {
 	public MessagingServer(int port) {
 
 		try {
-
 			this.welcomeSocket = new ServerSocket(port);
 
 		} catch (IOException ex) {
-
 			System.out.println("Messaging server: " + ex.getMessage());
 			ex.printStackTrace();
 		}
@@ -30,6 +28,13 @@ public class MessagingServer {
 
 		// TODO
 		// accept TCP connection on welcome socket and create messaging connection
+		
+		try {
+			connection = new Connection(welcomeSocket.accept());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		if (true) {
 			throw new UnsupportedOperationException(TODO.method());
@@ -42,11 +47,9 @@ public class MessagingServer {
 	public void stop() {
 
 		if (welcomeSocket != null) {
-
 			try {
 				welcomeSocket.close();
 			} catch (IOException ex) {
-
 				System.out.println("Messaging server: " + ex.getMessage());
 				ex.printStackTrace();
 			}

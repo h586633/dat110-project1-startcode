@@ -26,6 +26,9 @@ public class MessagingClient {
 		// create TCP socket for client and connection
 		// create connection object
 		
+		clientSocket = new Socket();
+		connection = new Connection(clientSocket);
+		
 		if (true) {
 			throw new UnsupportedOperationException(TODO.method());
 		}
