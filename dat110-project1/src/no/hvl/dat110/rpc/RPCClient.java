@@ -9,7 +9,6 @@ public class RPCClient {
 	private Connection connection;
 	
 	public RPCClient(String server, int port) {
-	
 		msgclient = new MessagingClient(server,port);
 	}
 	
@@ -19,21 +18,18 @@ public class RPCClient {
 	
 	public void connect() {
 		
-		// TODO: connect using the underlying messaging layer connection
+		// DONE: connect using the underlying messaging layer connection
 		
 		connection = msgclient.connect();
 		
-	    throw new UnsupportedOperationException(TODO.method());
-			
 	}
 	
 	public void disconnect() {
 		
-		// TODO: disconnect/close the underlying messaging connection
+		// DONE: disconnect/close the underlying messaging connection
 		
 		connection.close();
 		
-		throw new UnsupportedOperationException(TODO.method());
 	}
 	
 	public byte[] call(byte[] rpcrequest) {
@@ -50,8 +46,8 @@ public class RPCClient {
 		
 		*/
 		
-		RPCUtils rpcutils = new RPCUtils();
-		connection.send();
+		connection.send(rpcrequ);
+		
 		rpcreply = connection.receive().getData();
 		
 		

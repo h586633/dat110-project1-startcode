@@ -14,7 +14,7 @@ public class Connection {
 	private Socket socket; // socket for the underlying TCP connection
 
 	public Connection(Socket socket) {
-
+		
 		try {
 
 			this.socket = socket;
@@ -32,16 +32,20 @@ public class Connection {
 
 	public void send(Message message) {
 
-		// TODO
+		// DONE
 		// encapsulate the data contained in the message and write to the output stream
 		// Hint: use the encapsulate method on the message
-		System.out.println(message.encapsulate());
-		throw new UnsupportedOperationException(TODO.method());
+		byte[] messageInBytes = message.encapsulate();
+		try {
+			outStream.write(messageInBytes);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	public Message receive() {
 
-		// TODO
+		// DONE
 		// read a segment (128 bytes) from the input stream and decapsulate into message
 		// Hint: create a new Message object and use the decapsulate method
 		Message message;
@@ -49,7 +53,7 @@ public class Connection {
 		
 		message = new Message();
 		try {
-			recvbuf = System.in.readNBytes(128);
+			recvbuf = inStream.readNBytes(128);
 			message.decapsulate(recvbuf);
 		} catch (IOException e) {
 			e.printStackTrace();

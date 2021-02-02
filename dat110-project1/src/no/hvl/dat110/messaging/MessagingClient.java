@@ -22,17 +22,13 @@ public class MessagingClient {
 		Socket clientSocket;
 		Connection connection = null;
 
-		// TODO
+		// DONE
 		// create TCP socket for client and connection
 		// create connection object
 		
 		clientSocket = new Socket();
 		connection = new Connection(clientSocket);
 		
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
-
 		return connection;
 	}
 }
