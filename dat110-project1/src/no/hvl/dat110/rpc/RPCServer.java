@@ -37,23 +37,30 @@ public class RPCServer {
 		
 		while (!stop) {
 	    
-		   int rpcid;
-		   
-		   // TODO
-		   // - receive message containing RPC request
-		   // - find the identifier for the RPC methods to invoke
-		   // - lookup the method to be invoked
-		   // - invoke the method
-		   // - send back message containing RPC reply
+		   //int rpcid;
 			
-		   if (true) {
-			   throw new UnsupportedOperationException(TODO.method());
-		   }
+			// DONE:
+			   // - receive message containing RPC request
+			   // - find the identifier for the RPC methods to invoke
+			   // - lookup the method to be invoked
+			   // - invoke the method
+			   // - send back message containing RPC reply
+			
+		   Message a = connection.receive();
+			String unmarshalled = RPCUtils.unmarshallString(a.getData());
+			byte id = unmarshalled.getBytes()[0];
+			int rpcid = id;
+			RPCImpl procedure = services.get(rpcid);
+			assert procedure != null : "The given key is invalid!";
+			byte [] reply = procedure.invoke(a.getData());
+			connection.send(new Message(reply));
 		   
 		   if (rpcid == RPCCommon.RPIDSTOP) {
 			   stop = true;
 		   }
 		}
+		
+		stop();
 	
 	}
 	

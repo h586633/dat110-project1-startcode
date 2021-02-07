@@ -9,9 +9,11 @@ public class Display extends RPCStub {
 
 	public void write(String message) {
 
-		// TODO
+		// DONE
 		// implement marshalling, call and unmarshalling for write RPC method
 
-		throw new UnsupportedOperationException(TODO.method());
+		byte [] marshalled = RPCUtils.marshallString(RPCID, message);
+		rpcclient.call(marshalled);
+		System.out.println("Current temperature is: " + RPCUtils.unmarshallString(marshalled));
 	}
 }

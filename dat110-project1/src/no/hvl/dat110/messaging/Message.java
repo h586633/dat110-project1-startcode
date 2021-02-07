@@ -9,7 +9,13 @@ public class Message {
 	private byte[] payload;
 
 	public Message(byte[] payload) {
-		this.payload = payload; // TODO: check for length within boundary
+		if (payload.length > 128) {
+			this.payload = null;
+			System.err.println("Payload too large to process, must be less than 128 bytes");
+		}
+		else {
+			this.payload = payload; // TODO: check for length within boundary
+		}
 	}
 
 	public Message() {
